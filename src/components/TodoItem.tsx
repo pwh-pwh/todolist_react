@@ -1,5 +1,5 @@
-import React from "react";
-import {StateProps} from "./Todo";
+import React, {useContext} from "react";
+import {MyContext, StateProps} from "./MyProvider";
 
 const style = {
     marginTop: '5px',
@@ -9,9 +9,10 @@ const style = {
 
 interface IProps {
     todo: StateProps;
-    changeTodo: (id:number) => void;
+    // changeTodo: (id:number) => void;
 }
-const TodoItem = ({todo,changeTodo}: IProps) => {
+const TodoItem = ({todo}: IProps) => {
+    let {changeTodo} = useContext(MyContext);
     const changeHandler = () => {
         changeTodo(todo.id);
     };

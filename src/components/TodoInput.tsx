@@ -1,12 +1,13 @@
-import React, {useState} from "react";
-import {StateProps} from "./Todo";
+import React, {useContext, useState} from "react";
+import {MyContext} from "./MyProvider";
 
-interface IProps {
-    addTodo: (todo:StateProps) => void
-}
+/*interface IProps {
+    // addTodo: (todo:StateProps) => void
+}*/
 
-const TodoInput = ({addTodo}:IProps) => {
+const TodoInput = () => {
     const [text,setText] = useState('');
+    const {addTodo} = useContext(MyContext);
     const changeTextHandler = (e: React.ChangeEvent) => {
         setText((e.target as HTMLInputElement).value);
     }
