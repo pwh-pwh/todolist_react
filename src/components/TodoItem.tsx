@@ -1,5 +1,6 @@
 import React, {useContext} from "react";
-import {MyContext, StateProps} from "./MyProvider";
+import {MyContext} from "./MyProvider";
+import {StateProps} from "../store/reducer";
 
 const style = {
     marginTop: '5px',
@@ -12,9 +13,12 @@ interface IProps {
     // changeTodo: (id:number) => void;
 }
 const TodoItem = ({todo}: IProps) => {
-    let {changeTodo} = useContext(MyContext);
+    let {dispatch} = useContext(MyContext);
     const changeHandler = () => {
-        changeTodo(todo.id);
+        dispatch({
+            type: 'CHANGEFINISHED',
+            id: todo.id,
+        });
     };
     const spanStyle = {
         textDecoration: todo.isFinished ? 'line-through' : 'none'

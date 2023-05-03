@@ -7,16 +7,19 @@ import {MyContext} from "./MyProvider";
 
 const TodoInput = () => {
     const [text,setText] = useState('');
-    const {addTodo} = useContext(MyContext);
+    const {dispatch} = useContext(MyContext);
     const changeTextHandler = (e: React.ChangeEvent) => {
         setText((e.target as HTMLInputElement).value);
     }
     const addTodoHandler = () => {
         console.log(text);
-        addTodo({
-            id: new Date().getTime(),
-            text: text,
-            isFinished: false,
+        dispatch({
+            type: 'ADD',
+            todo: {
+                id: new Date().getTime(),
+                text: text,
+                isFinished: false,
+            }
         });
         setText('');
     };

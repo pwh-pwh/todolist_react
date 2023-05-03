@@ -11,8 +11,9 @@ const style= {
     changeTodo: (id:number) => void;
 }*/
 const TodoList = () => {
-    const {todoList} = useContext(MyContext);
-    const todoListdom = todoList.map(item => <TodoItem key={item.id} todo={item}/>)
+    console.log('todolist invo');
+    const {state} = useContext(MyContext);
+    const todoListdom = state.map(item => <TodoItem key={item.id} todo={item}/>)
     return (
         <div className="todo-list" style={style}>
             {todoListdom}
