@@ -1,6 +1,7 @@
 import React, {useContext} from "react";
-import {MyContext} from "./MyProvider";
 import {StateProps} from "../store/reducer";
+import {useDispatch} from "react-redux";
+import {changeAction} from "../store/action";
 
 const style = {
     marginTop: '5px',
@@ -13,12 +14,9 @@ interface IProps {
     // changeTodo: (id:number) => void;
 }
 const TodoItem = ({todo}: IProps) => {
-    let {dispatch} = useContext(MyContext);
+    const dispatch = useDispatch();
     const changeHandler = () => {
-        dispatch({
-            type: 'CHANGEFINISHED',
-            id: todo.id,
-        });
+        dispatch(changeAction(todo.id));
     };
     const spanStyle = {
         textDecoration: todo.isFinished ? 'line-through' : 'none'

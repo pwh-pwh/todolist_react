@@ -1,4 +1,4 @@
-
+import * as types from './actionType'
 export interface StateProps {
     id:number;
     text:string;
@@ -9,11 +9,11 @@ export interface ActionProps {
     type:string;
     [key:string]: any;
 }
-const reducer = (state:StateProps[],action:ActionProps) => {
+const reducer = (state:StateProps[] = [],action:ActionProps) => {
     switch (action.type) {
-        case "ADD":
+        case types.ADD:
             return [...state,action.todo];
-        case "CHANGEFINISHED":
+        case types.CHANGEFINISHED:
             return state.map(item => {
                 if( item.id === action.id ) {
                     item.isFinished = !item.isFinished;
@@ -25,4 +25,5 @@ const reducer = (state:StateProps[],action:ActionProps) => {
     }
 }
 
+export type RootState = ReturnType<typeof reducer>;
 export default reducer;

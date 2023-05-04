@@ -1,18 +1,18 @@
 import React from "react";
 import TodoInput from "./TodoInput";
 import TodoList from "./TodoList";
-import MyProvider from "./MyProvider";
-
+import {Provider} from "react-redux";
+import store from "../store";
 
 const Todo = () => {
     console.log('todo invo')
     return (
-        <MyProvider>
+        <Provider store={store}>
             <div className="todo">
                 <TodoInput />
                 <TodoList />
             </div>
-        </MyProvider>
+        </Provider>
     )
 }
 

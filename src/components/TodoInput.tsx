@@ -1,5 +1,7 @@
 import React, {useContext, useState} from "react";
-import {MyContext} from "./MyProvider";
+import {useDispatch} from "react-redux";
+import {addAction} from "../store/action";
+
 
 /*interface IProps {
     // addTodo: (todo:StateProps) => void
@@ -7,20 +9,17 @@ import {MyContext} from "./MyProvider";
 
 const TodoInput = () => {
     const [text,setText] = useState('');
-    const {dispatch} = useContext(MyContext);
+    const dispatch = useDispatch();
     const changeTextHandler = (e: React.ChangeEvent) => {
         setText((e.target as HTMLInputElement).value);
     }
     const addTodoHandler = () => {
         console.log(text);
-        dispatch({
-            type: 'ADD',
-            todo: {
-                id: new Date().getTime(),
-                text: text,
-                isFinished: false,
-            }
-        });
+        dispatch(addAction({
+            id: new Date().getTime(),
+            text: text,
+            isFinished: false,
+        }));
         setText('');
     };
     return (

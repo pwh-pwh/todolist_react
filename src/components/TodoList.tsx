@@ -1,6 +1,7 @@
 import React, {useContext} from "react";
 import TodoItem from "./TodoItem";
-import {MyContext} from "./MyProvider";
+import {useSelector} from "react-redux";
+import {RootState} from "../store/reducer";
 
 const style= {
     marginTop: '20px'
@@ -12,7 +13,7 @@ const style= {
 }*/
 const TodoList = () => {
     console.log('todolist invo');
-    const {state} = useContext(MyContext);
+    const state = useSelector((state:RootState) => state);
     const todoListdom = state.map(item => <TodoItem key={item.id} todo={item}/>)
     return (
         <div className="todo-list" style={style}>
